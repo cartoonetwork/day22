@@ -1,0 +1,52 @@
+package com.addressbook;
+import java.util.Scanner;
+import java.util.SortedMap;
+public class Operation {
+
+    public class Main {
+        static EmployeeList employeeListObj = EmployeeList.getInstance();
+        static Main main = new Main();
+        static Scanner scan = new Scanner(System.in);
+
+
+        public static void main(String[] args) {
+            int i = 0;
+            while (i == 0) {
+                main.userSelection(employeeListObj.showMenu());
+                System.out.println("Enter 0 to continue: ");
+                System.out.println("Enter 1 to Exit: ");
+                i = scan.nextInt();
+            }
+        }
+
+        public void userSelection(int choise) {
+            switch (choise) {
+                case 1:
+                    Employee employee = new Employee();
+                    employeeListObj.add(employee);
+                    break;
+
+                case 2:
+                    employeeListObj.getEmployeeList();
+                    break;
+
+                case 3:
+                    System.out.println("Enter ID to delete: ");
+                    int employeeId = scan.nextInt();
+                    employeeListObj.delete(employeeListObj.getEmployee(employeeId));
+                    break;
+
+                case 4:
+                    System.out.println("Enter Id to update: ");
+                    employeeId = scan.nextInt();
+                    employeeListObj.update(employeeListObj.getEmployee(employeeId));
+                    break;
+
+                case 5:
+                    System.out.println("Enter Id to Search details: ");
+                    employeeId = scan.nextInt();
+                    employeeListObj.search(employeeListObj.getEmployee(employeeId));
+            }
+        }
+    }
+}
